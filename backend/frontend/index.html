@@ -9,47 +9,47 @@
   <div class="container">
     <h1>Heart Disease Prediction</h1>
     <form id="predictionForm">
-      <label for="age">Age:</label>
-      <input type="number" id="age" required />
+  <label for="age">Age (18-110):</label>
+  <input type="number" id="age" min="18" max="110" placeholder="18-110" required />
 
-      <label for="sex">Sex (1=Male, 0=Female):</label>
-      <input type="number" id="sex" min="0" max="1" required />
+  <label for="sex">Sex (0=Female, 1=Male):</label>
+  <input type="number" id="sex" min="0" max="1" placeholder="0 or 1" required />
 
-      <label for="cp">CP:</label>
-      <input type="number" id="cp" required />
+  <label for="cp">CP (0-3):</label>
+  <input type="number" id="cp" min="0" max="3" placeholder="0-3" required />
 
-      <label for="trestbps">Trestbps:</label>
-      <input type="number" id="trestbps" required />
+  <label for="trestbps">Trestbps (50-250):</label>
+  <input type="number" id="trestbps" min="50" max="250" placeholder="50-250" required />
 
-      <label for="chol">Chol:</label>
-      <input type="number" id="chol" required />
+  <label for="chol">Chol (100-600):</label>
+  <input type="number" id="chol" min="100" max="600" placeholder="100-600" required />
 
-      <label for="fbs">FBS:</label>
-      <input type="number" id="fbs" min="0" max="1" required />
+  <label for="fbs">FBS (0-1):</label>
+  <input type="number" id="fbs" min="0" max="1" placeholder="0 or 1" required />
 
-      <label for="restecg">Restecg:</label>
-      <input type="number" id="restecg" required />
+  <label for="restecg">Restecg (0-2):</label>
+  <input type="number" id="restecg" min="0" max="2" placeholder="0-2" required />
 
-      <label for="thalach">Thalach:</label>
-      <input type="number" id="thalach" required />
+  <label for="thalach">Thalach (60-220):</label>
+  <input type="number" id="thalach" min="60" max="220" placeholder="60-220" required />
 
-      <label for="exang">Exang:</label>
-      <input type="number" id="exang" min="0" max="1" required />
+  <label for="exang">Exang (0-1):</label>
+  <input type="number" id="exang" min="0" max="1" placeholder="0 or 1" required />
 
-      <label for="oldpeak">Oldpeak:</label>
-      <input type="number" step="0.1" id="oldpeak" required />
+  <label for="oldpeak">Oldpeak (0.0-10.0):</label>
+  <input type="number" step="0.1" id="oldpeak" min="0" max="10" placeholder="0.0-10.0" required />
 
-      <label for="slope">Slope:</label>
-      <input type="number" id="slope" required />
+  <label for="slope">Slope (0-2):</label>
+  <input type="number" id="slope" min="0" max="2" placeholder="0-2" required />
 
-      <label for="ca">CA:</label>
-      <input type="number" id="ca" required />
+  <label for="ca">CA (0-3):</label>
+  <input type="number" id="ca" min="0" max="3" placeholder="0-3" required />
 
-      <label for="thal">Thal:</label>
-      <input type="number" id="thal" required />
+  <label for="thal">Thal (1-3):</label>
+  <input type="number" id="thal" min="1" max="3" placeholder="1-3" required />
 
-      <button type="submit">Predict</button>
-    </form>
+  <button type="submit">Predict</button>
+</form>
 
     <h2>Result:</h2>
     <pre id="result"></pre>
