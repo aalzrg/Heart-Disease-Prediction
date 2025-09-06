@@ -27,7 +27,7 @@ app.add_middleware(
 # Include prediction router
 app.include_router(predict_router)
 
-@app.get("/")
+@app.get("/api")
 def read_root():
     return {"message": "Heart Disease Prediction API is running"}
 
@@ -36,4 +36,5 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Demo/
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
 # Mount frontend at /frontend so it does NOT override the root path or docs
-app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+# Now the frontend is accessible at the root path, and API docs at /docs
