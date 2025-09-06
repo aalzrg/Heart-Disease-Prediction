@@ -1,0 +1,22 @@
+# Python / virtual env
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Data / models (optional - include if small)
+# model/
+
+# Jupyter / notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / secrets
+*.log
+.env

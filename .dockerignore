@@ -1,0 +1,18 @@
+# VCS & local
+.git
+.gitignore
+.venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite
+*.log
+
+# Notebook / data caches
+notebook/
+notebook/*.ipynb
+
+# OS cruft
+.DS_Store
+Thumbs.db

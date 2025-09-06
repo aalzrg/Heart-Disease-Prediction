@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heart Disease Predictor</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Heart Disease Prediction</h1>
+    <form id="predictionForm">
+      <label for="age">Age:</label>
+      <input type="number" id="age" required />
+
+      <label for="sex">Sex (1=Male, 0=Female):</label>
+      <input type="number" id="sex" min="0" max="1" required />
+
+      <label for="cp">CP:</label>
+      <input type="number" id="cp" required />
+
+      <label for="trestbps">Trestbps:</label>
+      <input type="number" id="trestbps" required />
+
+      <label for="chol">Chol:</label>
+      <input type="number" id="chol" required />
+
+      <label for="fbs">FBS:</label>
+      <input type="number" id="fbs" min="0" max="1" required />
+
+      <label for="restecg">Restecg:</label>
+      <input type="number" id="restecg" required />
+
+      <label for="thalach">Thalach:</label>
+      <input type="number" id="thalach" required />
+
+      <label for="exang">Exang:</label>
+      <input type="number" id="exang" min="0" max="1" required />
+
+      <label for="oldpeak">Oldpeak:</label>
+      <input type="number" step="0.1" id="oldpeak" required />
+
+      <label for="slope">Slope:</label>
+      <input type="number" id="slope" required />
+
+      <label for="ca">CA:</label>
+      <input type="number" id="ca" required />
+
+      <label for="thal">Thal:</label>
+      <input type="number" id="thal" required />
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <h2>Result:</h2>
+    <pre id="result"></pre>
+  </div>
+
+  <script>
+    const form = document.getElementById('predictionForm');
+    const resultBox = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        age: Number(document.getElementById('age').value),
+        sex: Number(document.getElementById('sex').value),
+        cp: Number(document.getElementById('cp').value),
+        trestbps: Number(document.getElementById('trestbps').value),
+        chol: Number(document.getElementById('chol').value),
+        fbs: Number(document.getElementById('fbs').value),
+        restecg: Number(document.getElementById('restecg').value),
+        thalach: Number(document.getElementById('thalach').value),
+        exang: Number(document.getElementById('exang').value),
+        oldpeak: Number(document.getElementById('oldpeak').value),
+        slope: Number(document.getElementById('slope').value),
+        ca: Number(document.getElementById('ca').value),
+        thal: Number(document.getElementById('thal').value),
+      };
+
+      try {
+        const response = await fetch('http://127.0.0.1:8000/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const json = await response.json();
+        resultBox.textContent = JSON.stringify(json, null, 2);
+      } catch (error) {
+        resultBox.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
