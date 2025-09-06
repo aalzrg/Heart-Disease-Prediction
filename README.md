@@ -1,5 +1,5 @@
 
-````markdown
+
 # Heart Disease Prediction
 
 A Python project that predicts heart disease from patient data using a machine learning model. Provides both:
@@ -65,7 +65,5 @@ The CLI will read all patients from the CSV and send requests to the API for pre
 * No need to rebuild the CLI container if you only change CSV files.
 * The `/data` mount allows the CLI to access any CSV files on your host machine.
 * Make sure the CSV has correct column names expected by the CLI (`age`, `sex`, `cp`, etc.).
-
-```
 
 ---
