@@ -33,7 +33,7 @@ def read_root():
 
 # Setup frontend static files mount
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Demo/
-FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "frontend")
 
 # Mount frontend at /frontend so it does NOT override the root path or docs
 app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
