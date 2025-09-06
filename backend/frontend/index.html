@@ -55,44 +55,48 @@
     <pre id="result"></pre>
   </div>
 
-  <script>
-    const form = document.getElementById('predictionForm');
-    const resultBox = document.getElementById('result');
+<script>
+const form = document.getElementById('predictionForm');
+const resultBox = document.getElementById('result');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+// Use relative URL so it works both locally and on Render
+const API_URL = "/predict";
 
-      const data = {
-        age: Number(document.getElementById('age').value),
-        sex: Number(document.getElementById('sex').value),
-        cp: Number(document.getElementById('cp').value),
-        trestbps: Number(document.getElementById('trestbps').value),
-        chol: Number(document.getElementById('chol').value),
-        fbs: Number(document.getElementById('fbs').value),
-        restecg: Number(document.getElementById('restecg').value),
-        thalach: Number(document.getElementById('thalach').value),
-        exang: Number(document.getElementById('exang').value),
-        oldpeak: Number(document.getElementById('oldpeak').value),
-        slope: Number(document.getElementById('slope').value),
-        ca: Number(document.getElementById('ca').value),
-        thal: Number(document.getElementById('thal').value),
-      };
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      try {
-        const response = await fetch('http://127.0.0.1:8000/predict', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
+  const data = {
+    age: Number(document.getElementById('age').value),
+    sex: Number(document.getElementById('sex').value),
+    cp: Number(document.getElementById('cp').value),
+    trestbps: Number(document.getElementById('trestbps').value),
+    chol: Number(document.getElementById('chol').value),
+    fbs: Number(document.getElementById('fbs').value),
+    restecg: Number(document.getElementById('restecg').value),
+    thalach: Number(document.getElementById('thalach').value),
+    exang: Number(document.getElementById('exang').value),
+    oldpeak: Number(document.getElementById('oldpeak').value),
+    slope: Number(document.getElementById('slope').value),
+    ca: Number(document.getElementById('ca').value),
+    thal: Number(document.getElementById('thal').value),
+  };
 
-        if (!response.ok) throw new Error('Network response was not ok');
-
-        const json = await response.json();
-        resultBox.textContent = JSON.stringify(json, null, 2);
-      } catch (error) {
-        resultBox.textContent = `Error: ${error.message}`;
-      }
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     });
-  </script>
+
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    const json = await response.json();
+    resultBox.textContent = JSON.stringify(json, null, 2);
+  } catch (error) {
+    resultBox.textContent = `Error: ${error.message}`;
+  }
+});
+</script>
+
 </body>
 </html>
