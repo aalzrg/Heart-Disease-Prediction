@@ -24,15 +24,10 @@ cd Heart-Disease-Prediction
 docker compose up -d --build
 ````
 
-Ah, yes, lazrg — the CLI, API, and frontend are **separate services**, but when you run `docker compose up -d --build`, the **API and frontend containers start automatically**. The CLI is the only one you run manually (with `docker compose run --rm cli`) because it’s interactive.
-
-So your **usage section is correct**, but we can clarify it better for GitHub readers:
-
-
 ## Usage
 
 1. **Start API and Frontend**  
-   This runs your backend API and the web frontend:
+   This what you did before "bulding the image" also runs your backend API and the web frontend:
 
    ```bash
    docker compose up -d --build
