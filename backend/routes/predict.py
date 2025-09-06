@@ -7,8 +7,8 @@ from datetime import datetime
 
 router = APIRouter()
 
-# Define log file path
-LOG_FILE = os.path.join("logs", "patient_logs.json")
+# Use /tmp for logs (since cli/user_data is read-only on Render)
+LOG_FILE = "/tmp/admin.json"
 
 @router.post("/predict")
 def predict_heart_disease(patient: PatientData):
@@ -23,12 +23,9 @@ def predict_heart_disease(patient: PatientData):
             "result": result,
         }
 
-        # Ensure logs folder exists
-        os.makedirs("logs", exist_ok=True)
-
         # Initialize file if it doesn’t exist
         if not os.path.exists(LOG_FILE):
-            with open(LOG_FILE, "w") as f:
+            with open(LOG_FILE, "w", encoding="utf-8") as f:
                 json.dump([], f)
 
         # Append log entry safely
@@ -36,7 +33,7 @@ def predict_heart_disease(patient: PatientData):
             try:
                 data = json.load(f)
             except json.JSONDecodeError:
-                data = []  # reset if file is corrupted
+                data = []
             data.append(log_entry)
             f.seek(0)
             json.dump(data, f, indent=2)
@@ -45,5 +42,5 @@ def predict_heart_disease(patient: PatientData):
         return result
 
     except Exception as e:
-        print(f"[ERROR] Prediction failed: {e}")  # log in Render console
+        print(f"[ERROR] Prediction failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
