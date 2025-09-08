@@ -54,7 +54,7 @@ docker compose up -d --build
 
 ```yaml
 volumes:
-  - /c/Users/BBY/Desktop/sooka:/data
+  - /c/.../.../Desktop/sooka:/data
 ```
 
 3. Run the CLI and use the `loaddetect` command:
